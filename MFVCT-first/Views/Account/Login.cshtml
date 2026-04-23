@@ -1,0 +1,370 @@
+@model backendconfigconecta.Controllers.LoginViewModel
+@{ Layout = null; }
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduSys — Login</title>
+    <link rel="stylesheet" href="~/css/geral.css" />
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: linear-gradient(155deg, #051211 0%, #0B2B28 45%, #1B4D46 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: var(--font-sans, 'Segoe UI', sans-serif);
+        }
+
+        .login-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 32px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .navbar-brand-text {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            color: #E8F6F3;
+        }
+
+        .navbar-brand-text span { color: #76C057; }
+
+        .navbar-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 10px;
+            letter-spacing: 0.18em;
+            color: #76C057;
+            font-family: monospace;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #76C057;
+            box-shadow: 0 0 6px #76C057;
+            animation: pulse 2s infinite;
+        }
+
+        @@keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .login-body {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 16px;
+        }
+
+        .login-card {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            background: linear-gradient(145deg, rgba(11,43,40,0.85) 0%, rgba(27,77,70,0.75) 100%);
+            border: 1px solid rgba(118,192,87,0.25);
+            border-radius: 16px;
+            padding: 40px 36px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(118,192,87,0.08) inset;
+            backdrop-filter: blur(12px);
+            overflow: hidden;
+        }
+
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3C8F40, #76C057, #A8D582);
+        }
+
+        .login-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(118,192,87,0.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .role-toggle {
+            display: flex;
+            gap: 4px;
+            padding: 4px;
+            background: rgba(0,0,0,0.25);
+            border: 1px solid rgba(118,192,87,0.2);
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .role-btn {
+            flex: 1;
+            padding: 9px 0;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 10px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #A8D582;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .role-btn:hover { background: rgba(118,192,87,0.1); }
+
+        .role-btn.active {
+            background: linear-gradient(135deg, #76C057 0%, #3C8F40 100%);
+            color: #0D2B18;
+            font-weight: 700;
+        }
+
+        .login-card-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #E8F6F3;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .login-card-subtitle {
+            font-family: monospace;
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #76C057;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .login-form { display: flex; flex-direction: column; gap: 16px; }
+
+        .login-label {
+            font-family: monospace;
+            font-size: 9px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #A8D582;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .login-input {
+            width: 100%;
+            background: rgba(0,0,0,0.25);
+            border: 1px solid rgba(118,192,87,0.25);
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: #E8F6F3;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .login-input::placeholder { color: rgba(232,246,243,0.35); }
+
+        .login-input:focus {
+            border-color: #76C057;
+            background: rgba(0,0,0,0.35);
+            box-shadow: 0 0 0 3px rgba(118,192,87,0.15);
+        }
+
+        .login-check-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .login-check-row input[type="checkbox"] {
+            width: 15px;
+            height: 15px;
+            accent-color: #76C057;
+            cursor: pointer;
+        }
+
+        .login-check-label {
+            font-family: monospace;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #A8D582;
+            cursor: pointer;
+        }
+
+        .login-submit {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #76C057 0%, #3C8F40 100%);
+            color: #0D2B18;
+            font-family: monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(118,192,87,0.28);
+            transition: all 0.22s;
+            margin-top: 4px;
+        }
+
+        .login-submit:hover {
+            background: linear-gradient(135deg, #A8D582 0%, #76C057 100%);
+            box-shadow: 0 6px 24px rgba(118,192,87,0.38);
+            transform: translateY(-1px);
+        }
+
+        .text-danger {
+            color: #f87171;
+            font-size: 11px;
+            font-family: monospace;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .validation-summary {
+            background: rgba(248,113,113,0.1);
+            border: 1px solid rgba(248,113,113,0.25);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #f87171;
+            font-size: 12px;
+            font-family: monospace;
+        }
+
+        .login-status-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-top: 16px;
+            margin-top: 16px;
+            border-top: 1px solid rgba(118,192,87,0.2);
+        }
+
+        .login-test-creds {
+            margin-top: 14px;
+            padding: 12px 14px;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(118,192,87,0.15);
+            border-radius: 8px;
+        }
+
+        .login-test-title {
+            font-family: monospace;
+            font-size: 9px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #76C057;
+            margin-bottom: 8px;
+        }
+
+        .login-test-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 3px 0;
+        }
+
+        .login-test-role {
+            font-family: monospace;
+            font-size: 11px;
+            color: #A8D582;
+        }
+
+        .login-test-val {
+            font-family: monospace;
+            font-size: 11px;
+            color: rgba(168,213,130,0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="login-nav">
+        <div class="navbar-brand">
+            <span class="navbar-brand-text">EDU<span>SYS</span></span>
+        </div>
+        <div class="navbar-status">
+            <span class="status-dot"></span>
+            SISTEMA ONLINE · v2.4.1
+        </div>
+    </nav>
+
+    <div class="login-body">
+        <div class="login-card">
+
+            <!--<div class="role-toggle">
+                <button type="button" class="role-btn active" onclick="setRole(this,'Aluno')">ALUNO</button>
+                <button type="button" class="role-btn" onclick="setRole(this,'Professor')">PROFESSOR</button>
+                <button type="button" class="role-btn" onclick="setRole(this,'Admin')">ADMIN</button>
+            </div>-->
+
+            <h1 class="login-card-title">Acesso ao sistema</h1>
+            <p class="login-card-subtitle">Insira suas credenciais</p>
+
+            <form class="login-form" asp-action="Login" method="post">
+                <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+                <input type="hidden" id="role-input" name="role" value="Aluno" />
+
+                <div>
+                    <label asp-for="Email" class="login-label">User_ID</label>
+                    <input asp-for="Email" class="login-input" placeholder="seu@email.edu" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Password" class="login-label">Pass_Key</label>
+                    <input asp-for="Password" class="login-input" type="password" placeholder="••••••••" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="login-check-row">
+                    <input asp-for="RememberMe" type="checkbox" id="RememberMe" />
+                    <label asp-for="RememberMe" class="login-check-label">Lembrar-me</label>
+                </div>
+
+                <button type="submit" class="login-submit">ENTRAR_</button>
+            </form>
+
+            <div class="login-status-bar">
+                <span class="status-dot"></span>
+                <span style="font-size:10px;color:#76C057;font-family:monospace;">SESSÃO SEGURA · TLS 1.3</span>
+            </div>
+
+            <div class="login-test-creds">
+                <p class="login-test-title">Usuários de teste</p>
+                <div class="login-test-row">
+                    <span class="login-test-role">Aluno</span>
+                    <span class="login-test-val">aluno@teste.com · Aluno@123</span>
+                </div>
+                <div class="login-test-row">
+                    <span class="login-test-role">Professor</span>
+                    <span class="login-test-val">professor@teste.com · Professor@123</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        function setRole(btn, label) {
+            document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('role-input').value = label;
+        }
+    </script>
+</body>
+</html>

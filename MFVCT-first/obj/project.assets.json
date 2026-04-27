@@ -3041,11 +3041,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alunobcc11\\Downloads\\MFVCT-first\\MFVCT-first\\backendcodeteste.csproj",
+      "projectUniqueName": "C:\\Users\\alunobcc11\\Desktop\\Design-Conecta\\MFVCT-first\\backendcodeteste.csproj",
       "projectName": "backendconfigconecta",
-      "projectPath": "C:\\Users\\alunobcc11\\Downloads\\MFVCT-first\\MFVCT-first\\backendcodeteste.csproj",
+      "projectPath": "C:\\Users\\alunobcc11\\Desktop\\Design-Conecta\\MFVCT-first\\backendcodeteste.csproj",
       "packagesPath": "C:\\Users\\alunobcc11\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alunobcc11\\Downloads\\MFVCT-first\\MFVCT-first\\obj\\",
+      "outputPath": "C:\\Users\\alunobcc11\\Desktop\\Design-Conecta\\MFVCT-first\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("backendconfigconecta")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+61944a519941e42e9591d0d24490ac84370c6434")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ecb2df842fcc0e371387c8531cdefeee8127a29e")]
 [assembly: System.Reflection.AssemblyProductAttribute("backendconfigconecta")]
 [assembly: System.Reflection.AssemblyTitleAttribute("backendconfigconecta")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

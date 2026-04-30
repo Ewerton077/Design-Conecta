@@ -46,11 +46,12 @@ public class AccountController : Controller
 
         if (result.Succeeded)
         {
-            // Verifica roles do Identity para redirecionar corretamente
-            if (await _userManager.IsInRoleAsync(user, "Aluno"))
+            // Busca roles uma vez e verifica
+            var roles = await _userManager.GetRolesAsync(user);
+
+            if (roles.Contains("Aluno"))
                 return RedirectToAction("Index", "Aluno");
-            else if (await _userManager.IsInRoleAsync(user, "Professor") || 
-                     await _userManager.IsInRoleAsync(user, "Admin"))
+            if (roles.Contains("Professor") || roles.Contains("Admin"))
                 return RedirectToAction("Index", "Professor");
         }
 

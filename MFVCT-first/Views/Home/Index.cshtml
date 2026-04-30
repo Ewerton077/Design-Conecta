@@ -11,9 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
         /* ── VARIÁVEIS DE CORES (tema claro) ── */
-   
-
-
         :root {
             --brand-lime:        #1EB53A;
             --brand-lime-dark:   #008744;
@@ -66,31 +63,31 @@
             overflow-x: hidden;
         }
 
-/* ── HEADER ── */
-.header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 1000;
-    background: rgba(0, 0, 0, 0);
-    backdrop-filter: blur(1.3px);
-    -webkit-backdrop-filter: blur(1.3px);
-    border-bottom: 1px solid transparent;
-    transition: box-shadow 0.3s, background 0.3s;
-}
-.header.scrolled {
-    background: rgba(0, 0, 0, 0.445);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.199);
-    border-bottom: 1px solid rgba(161,188,33,0.3);
-}
+        /* ── HEADER ── */
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(1.3px);
+            -webkit-backdrop-filter: blur(1.3px);
+            border-bottom: 1px solid transparent;
+            transition: box-shadow 0.3s, background 0.3s;
+        }
+        .header.scrolled {
+            background: rgba(0, 0, 0, 0.445);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.199);
+            border-bottom: 1px solid rgba(161,188,33,0.3);
+        }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-}
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
         .navbar-brand-text {
             font-family: var(--font-mono);
             font-size: 16px;
@@ -161,13 +158,13 @@
             border: none;
         }
 
-        /* ── HERO ── */
+        /* ── HERO (80vh) ── */
         .hero {
-            min-height: 100vh;
+            min-height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 8rem 2rem 4rem;
+            padding: 6rem 2rem 4rem;
             position: relative;
             background-size: cover;
             background-position: center;
@@ -199,7 +196,7 @@
             animation: fadeUp 0.8s ease-out;
         }
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
             color: var(--brand-lime);
@@ -207,14 +204,14 @@
         }
         .hero h1 span { color: #ffffff; }
         .hero h2 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 400;
             color: rgba(255,255,255,0.8);
             margin-bottom: 1.5rem;
             animation: fadeUp 0.8s ease-out 0.4s backwards;
         }
         .hero p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: rgba(255,255,255,0.7);
             margin-bottom: 1rem;
             max-width: 680px;
@@ -223,23 +220,23 @@
             animation: fadeUp 0.8s ease-out 0.6s backwards;
         }
         .hero .destaque {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             color: var(--brand-lime);
-            margin: 1.5rem 0;
+            margin: 1rem 0;
             animation: fadeUp 0.8s ease-out 0.8s backwards;
         }
         .hero-btns {
             display: flex;
             gap: 1rem;
             justify-content: center;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             animation: fadeUp 0.8s ease-out 1s backwards;
         }
         .hero .btn-primary-hero {
             background: linear-gradient(135deg, var(--brand-lime) 0%, var(--brand-lime-dark) 100%);
             color: #2a3d00;
-            padding: 12px 28px;
+            padding: 10px 24px;
             border-radius: var(--radius-md);
             font-family: var(--font-mono);
             font-size: 11px;
@@ -261,7 +258,7 @@
             background: transparent;
             color: #ffffff;
             border: 1px solid rgba(255,255,255,0.55);
-            padding: 12px 28px;
+            padding: 10px 24px;
             border-radius: var(--radius-md);
             font-family: var(--font-mono);
             font-size: 11px;
@@ -276,6 +273,52 @@
             border-color: rgba(255,255,255,0.85);
         }
 
+        /* ── WAVES ARREDONDADAS ── */
+        .hero-waves {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .hero-wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-repeat: repeat-x;
+            background-position: bottom;
+            background-size: 1400px 100%;
+        }
+        .wave-1 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 160' preserveAspectRatio='none'%3E%3Cpath fill='%23FFFFFF' fill-opacity='1' d='M0,96 C200,160 400,160 600,128 C800,96 1000,64 1200,80 C1300,88 1350,96 1400,96 L1400,160 L0,160 Z'%3E%3C/path%3E%3C/svg%3E");
+            animation: waveMove 25s linear infinite;
+            opacity: 0.95;
+        }
+        .wave-2 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 160' preserveAspectRatio='none'%3E%3Cpath fill='%23FFFFFF' fill-opacity='0.85' d='M0,112 C200,144 400,128 600,112 C800,96 1000,80 1200,96 C1300,104 1350,112 1400,112 L1400,160 L0,160 Z'%3E%3C/path%3E%3C/svg%3E");
+            animation: waveMove 20s linear infinite reverse;
+            opacity: 0.7;
+        }
+        .wave-3 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 160' preserveAspectRatio='none'%3E%3Cpath fill='%23FFFFFF' fill-opacity='0.7' d='M0,128 C250,152 500,136 750,120 C1000,104 1150,88 1300,104 C1350,112 1380,120 1400,128 L1400,160 L0,160 Z'%3E%3C/path%3E%3C/svg%3E");
+            animation: waveMove 15s linear infinite;
+            opacity: 0.5;
+        }
+        .wave-4 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 160' preserveAspectRatio='none'%3E%3Cpath fill='%23FFFFFF' fill-opacity='0.4' d='M0,144 C300,160 600,152 900,136 C1100,120 1250,112 1400,120 L1400,160 L0,160 Z'%3E%3C/path%3E%3C/svg%3E");
+            animation: waveMove 10s linear infinite reverse;
+            opacity: 0.3;
+        }
+
+        @@keyframes waveMove {
+            0% { background-position-x: 0px; }
+            100% { background-position-x: 1400px; }
+        }
+
         .decorative-line {
             position: absolute;
             height: 1px;
@@ -285,6 +328,18 @@
         }
         .decorative-line.top    { top: 120px; left: 10%; width: 80%; }
         .decorative-line.bottom { bottom: 100px; left: 10%; width: 60%; }
+
+        /* ── Waves ── */
+        .sobre {
+            background: var(--bg-section);
+            border-top: none;
+            border-bottom: 0.5px solid var(--border);
+            position: relative;
+            z-index: 15;
+            margin-top: -40px;
+            border-radius: 48px 42px 45 50;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+        }
 
         /* ── QUICKSTATS ── */
         .bc-quickstats {
@@ -346,11 +401,6 @@
         }
 
         /* ── SOBRE ── */
-        .sobre {
-            background: var(--bg-section);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
         .sobre-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -493,17 +543,16 @@
         /* ── CTA ── */
         .cta-section {
             background-image: url(/css/imagens/bannerfundo.png);
-            background-size: cover;        /* faz a imagem cobrir toda a área */
-            background-position: center;   /* centraliza a imagem */
-            background-repeat: no-repeat;  /* evita repetição */
-
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             border-top: 1px solid rgba(161,188,33,0.25);
             border-bottom: 1px solid rgba(161,188,33,0.25);
             text-align: center;
             padding: 5rem 2rem;
             position: relative;
             z-index: 1;
-}
+        }
         .cta-content h2 { color: var(--brand-lime); font-size: 2rem; margin-bottom: 1rem; }
         .cta-content p { color: rgba(255,255,255,0.75); font-size: 1rem; margin-bottom: 2rem; }
         .btn-cta {
@@ -538,7 +587,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border-card);
             border-radius: var(--radius-lg);
-            padding: 1.25rem 0.75rem;
+            padding: 2.25rem 1.75rem;
             text-align: center;
             box-shadow: var(--shadow-sm);
             transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
@@ -828,7 +877,7 @@
                 border-bottom: 1px solid rgba(161,188,33,0.2);
             }
             .nav-links.active { transform: translateY(0); }
-            .hero h1 { font-size: 2.5rem; }
+            .hero h1 { font-size: 2rem; }
             .hero-btns { flex-direction: column; align-items: center; }
             .sobre-content, .participar-content { grid-template-columns: 1fr; }
             .missao-grid, .conteudo-grid, .turma-gallery,
@@ -838,17 +887,9 @@
             .footer-content { grid-template-columns: 1fr; }
             .turma-stats { gap: 2rem; }
         }
-
-        .hero-wave {
-            border: solid 1px blue;
-            width: 25%;
-            background-color: red;            
-            border-radius: 50% 40% 50% 20%;
-        }
     </style>
 </head>
 <body>
-
 
 <!-- ── HEADER ──────────────────────────────────────────────── -->
 <header class="header" id="header">
@@ -864,34 +905,25 @@
             <li><a href="#participar">Como Participar</a></li>
             <li><a href="#equipe">Equipe</a></li>
             <li><a asp-controller="AreaAluno" asp-action="Areaaluno_index" class="btn-aluno">Área do Aluno</a></li>
-            <li>
-                
-            </li>
         </ul>
-
     </nav>
 </header>
 
-
-
-<!-- ── HERO ────────────────────────────────────────────────── -->
-<section id="home" class="hero" style="background-image: url('@Url.Content("~/css/imagens/porque_bg.jpeg")');">
+<!-- ── HERO (80vh) ──────────────────────────────────────────── -->
+<section id="home" class="hero" style="background-image: url('@Url.Content("~/css/imagens/porque_bg.png")');">
     <div class="hero-overlay"></div>
-<div class="hero-waves">
+    <div class="hero-waves">
         <div class="hero-wave wave-1"></div>
         <div class="hero-wave wave-2"></div>
         <div class="hero-wave wave-3"></div>
         <div class="hero-wave wave-4"></div>
     </div>
-    
     <div class="decorative-line top"></div>
     <div class="decorative-line bottom"></div>
     <div class="hero-content">
-        
-
         <h1>Barracred <span>Conecta</span></h1>
         <h2>Criando Oportunidades e Cooperando para o Futuro</h2>
-        <p>Um programa pensado para inspirar, capacitar e criar conexões com o futuro por meio da educação, do conhecimento e do desenvolvimento humano.</p>
+        <p>Um programa pensado para inspirar, capacitar e criar conexões com o futuro<br>por meio da educação, do conhecimento e do desenvolvimento humano.</p>
         <p class="destaque">Porque quando a gente coopera, a transformação acontece!</p>
         <div class="hero-btns">
             <a href="/inscricao" class="btn-primary-hero">
@@ -902,8 +934,7 @@
     </div>
 </section>
 
-
-<!-- ── SOBRE ────────────────────────────────────────────────── -->
+<!-- ── SOBRE (SOBREPOSTA COM FUNDO BRANCO) ─────────────────── -->
 <section id="sobre" class="section sobre">
     <div class="container">
         <h2 class="section-title">O que é o Barracred Conecta?</h2>
@@ -1028,10 +1059,6 @@
     </div>
 </div>
 
-
-
-
-
 <!-- ── CTA ──────────────────────────────────────────────────── -->
 <section id="inscrever" class="cta-section">
     <div class="container">
@@ -1044,7 +1071,7 @@
 </section>
 
 <!-- ── EQUIPE ───────────────────────────────────────────────── -->
-<section id="equipe" class="section" >
+<section id="equipe" class="section">
     <div class="container">
         <h2 class="section-title">Quem está com você nessa?</h2>
         <p class="section-subtitle">Um time de profissionais dedicados à formação de jovens.</p>
@@ -1105,8 +1132,6 @@
         </div>
     </div>
 </section>
-
-
 
 <!-- ── FOOTER ───────────────────────────────────────────────── -->
 <footer class="footer">

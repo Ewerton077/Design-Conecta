@@ -55,15 +55,13 @@ namespace backendconfigconecta.Controllers
                 return View("Index");
             }
 
-            // 🔥 REDIRECIONAMENTO POR ROLE (otimizado)
+            // 🔥 REDIRECIONAMENTO POR ROLE (otimizado - busca roles uma vez)
             var roles = await _userManager.GetRolesAsync(user);
 
-            // 🎯 REDIRECIONAMENTO POR ROLE - Roles com maiúscula inicial
-            if (await _userManager.IsInRoleAsync(user, "Aluno"))
+            if (roles.Contains("Aluno"))
                 return RedirectToAction("Index", "Aluno");
 
-            if (await _userManager.IsInRoleAsync(user, "Professor") ||
-                await _userManager.IsInRoleAsync(user, "Admin"))
+            if (roles.Contains("Professor") || roles.Contains("Admin"))
                 return RedirectToAction("Index", "Professor");
 
             // fallback
